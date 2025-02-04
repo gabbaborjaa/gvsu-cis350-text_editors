@@ -1,7 +1,6 @@
 # The Text Editors
 
-Project description (~1 Paragraph)
-
+A super cool text editor that allows you to customize colors, exports to PDF's, has amazing version control, undo's and redo's your progress and everything else that a super cool editor does for all your everyday tasks
 # Team Members and Roles
 
 * [Gabriel Borja](https://github.com/gabbaborjaa/CIS350-HW2-Borja) (Project Leader, Programmer, Proejct Manager)
