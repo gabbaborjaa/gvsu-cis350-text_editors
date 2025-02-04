@@ -1,6 +1,6 @@
-Team name:
+Team name: The Text Editors
 
-Team members:
+Team members: Gab Borja, Cardell Taylor, John Le, Charlie Monteresso
 
 # Introduction
 
@@ -10,6 +10,14 @@ Team members:
 # Anticipated Technologies
 
 (What technologies are needed to build this project)
+
+## Front End
+- HTML
+- CSS
+- JavaScript
+
+## Backend
+
 
 # Method/Approach
 
@@ -22,5 +30,8 @@ Team members:
 # Anticipated Problems
 
 (Describe any problems you foresee that you will need to overcome)
+
+- Problems in implementing the GUI
+- Possible issues with tracking version control.
 
 Remember this is a living document is expected to be changed as you make progress on your project.
