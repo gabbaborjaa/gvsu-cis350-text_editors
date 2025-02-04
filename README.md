@@ -1,4 +1,4 @@
-# Team Name
+# Text Editors
 
 Project description (~1 Paragraph)
 
