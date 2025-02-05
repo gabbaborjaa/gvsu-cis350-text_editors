@@ -5,7 +5,7 @@ A super cool text editor that allows you to customize colors, exports to PDF's, 
 # Team Members and Roles
 
 * [Gabriel Borja](https://github.com/gabbaborjaa/CIS350-HW2-Borja) (Project Leader, Programmer, Proejct Manager)
-* Member 2 (Role 3, Role 4)
+* [Cardell Taylor](https://github.com/CTaylah/CIS350-HW2-Taylor) Programmer, The Git guy
 * Member 3 (Role 5, Role 6)
 * [John Le](https://github.com/JoLe2004/CIS350-HW2-Le) (UI Design, Programmer) 
 
