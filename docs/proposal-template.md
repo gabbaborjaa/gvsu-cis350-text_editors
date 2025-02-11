@@ -51,7 +51,7 @@ Some steps include:
 # Anticipated Problems
 
 - Problems in implementing the GUI
-- Possible issues with tracking version control
+- Possible issues with implementing version control feature
 
 Remember this is a living document is expected to be changed as you make progress on your project.
 
