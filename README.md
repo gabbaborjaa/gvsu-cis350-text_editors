@@ -12,3 +12,23 @@ A super cool text editor that allows you to customize colors, exports to PDF's, 
 # Prerequisites
 
 # Run Instuctions
+
+# 1 Abstract
+
+# 2 Introduction
+
+# 3 Architectural Design
+
+## 3.1 Use Case Diagram
+
+## 3.2 Class Diagram
+
+## 3.3 Sequence Diagram
+
+# User Guide/Implementation
+
+# Risk Analysis/Retrospective
+
+# Future Scope
+
+# Conclusion
