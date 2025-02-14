@@ -37,7 +37,7 @@ To run with the python interpreter, `cd` into `src` and run:
 `python main.py`
 
 ## Build Instructions
-We use PyInstaller to build our binaries. Assuming you follwed the instructions and have activated the virtual environment, `cd` into `src/` and run:
+We use Eel which uses PyInstaller to build binaries. Assuming you follwed the instructions and have activated the virtual environment, `cd` into `src/` and run:
 
 `python -m eel main.py static`
 
