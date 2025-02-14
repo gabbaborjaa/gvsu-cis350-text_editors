@@ -15,17 +15,21 @@ A super cool text editor that allows you to customize colors, exports to PDF's, 
 ## For Development
 
 Clone the repository and and `cd` into the project folder:
+
 `git clone https://github.com/gabbaborjaa/gvsu-cis350-text_editors.git`
 
 `cd gvsu-cis350-text_editors`
 
 Create a python virtual environment called `.venv`:
+
 `python -m venv .venv`
 
 Activate it:
+
 `source .venv/bin/activate`
 
 Install requirements:
+
 `pip install -r requirements.txt`
 
 ## Build Instructions
