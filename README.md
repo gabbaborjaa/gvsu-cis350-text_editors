@@ -34,6 +34,7 @@ Install requirements:
 
 ## Build Instructions
 We use PyInstaller to build our binaries. Assuming you follwed the instructions and have activated the virtual environment, `cd` into `src/` and run:
+
 `python -m eel main.py`
 
 This will generate an executable in `src/dist/main`
