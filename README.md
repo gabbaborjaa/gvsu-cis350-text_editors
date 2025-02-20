@@ -20,7 +20,8 @@ Writing is an essential part of everyday life, whether for work, school, or pers
 # 3 Architectural Design
 
 ## 3.1 Use Case Diagram
-
+Use Case Diagram
+[use case diagram](/diagrams/Text-Editor_Use-Case.drawio.png)
 ## 3.2 Class Diagram
 
 ## 3.3 Sequence Diagram
