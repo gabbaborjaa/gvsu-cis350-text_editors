@@ -20,7 +20,7 @@ Technologies that may be needed for this project include:
 
 ## Front End
 - HTML
-- CSS
+- CSS (Bootstrap Framework)
 - JavaScript
 
 ## Backend
