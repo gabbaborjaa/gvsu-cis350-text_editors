@@ -23,4 +23,4 @@ Goals for next week (include responsibilities)
 * Finish slides by Wednesday (Send to Finnete)
   * Trello
   * Figma
-  * Actual App
+  * Screenshot of actual app
