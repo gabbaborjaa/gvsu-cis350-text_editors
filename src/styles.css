@@ -114,7 +114,10 @@ body {
 }
 
 #content {
-    padding: 16px;
-    outline: none;
-    overflow: auto;
+    width: 100vw;  
+    height: 100vh;
+    outline: none; 
+    padding: 50px; 
+    font-size: 16px; 
+    box-sizing: border-box;
 }
