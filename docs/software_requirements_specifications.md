@@ -1,6 +1,6 @@
 # Overview
 
-<!-- Describe the purpose of this document in 1 paragraph of less … hint: it is  your SRS  -->
+This purpose of this document is to highlight the functionalities, behaviors and capabilities of Jotter.
 
 # Functional Requirements
 
