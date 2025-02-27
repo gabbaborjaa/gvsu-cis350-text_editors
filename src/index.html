@@ -6,21 +6,23 @@
         <title>Jotter</title>
         <link rel="stylesheet" href="styles.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     </head>
     <body>
         <div class="container">
             <div class="toolbar">
                 <div class="head">
-                    <input type="text" placeholder="Untitled" value ="untitiled">
-                    <select>
-                        <option value="" selected="" hidden="" disabled="">File</option>
+                    <input id="file_name" type="text" placeholder="Untitled" value="untitled">
+                    <button id="load-button"><i class='bx bx-folder-open'></i> Load</button>
+                    <select id="fileSelect">
+                        <option value="" selected hidden disabled>File</option>
                         <option value="new">New File</option>
                         <option value="txt">Save as .txt</option>
                         <option value="pdf">Save as .pdf</option>
+                        <option value="md">Save as .md</option>
+                        <option value="docx">Save as .docx</option>
                     </select>
                     <select>
-                        <option value="" selected="" hidden="" disabled="">Format</option>
+                        <option value="" selected hidden disabled>Format</option>
                         <option value="h1">Heading 1</option>
                         <option value="h2">Heading 2</option>
                         <option value="h3">Heading 3</option>
@@ -30,7 +32,7 @@
                         <option value="p">Paragraph</option>
                     </select>
                     <select>
-                        <option value="" selected="" hidden="" disabled="">Font Size</option>
+                        <option value="" selected hidden disabled>Font Size</option>
                         <option value="1">Extra Small</option>
                         <option value="2">Small</option>
                         <option value="3">Regular</option>
@@ -49,24 +51,36 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button><i class='bx bx-undo' ></i></button>
-                    <button><i class='bx bx-redo' ></i></button>
+                    <button><i class='bx bx-undo'></i></button>
+                    <button><i class='bx bx-redo'></i></button>
                     <button><i class='bx bx-bold'></i></button>
-                    <button><i class='bx bx-underline' ></i></button>
-                    <button><i class='bx bx-italic' ></i></button>
-                    <button><i class='bx bx-strikethrough' ></i></button>
-                    <button><i class='bx bx-align-left' ></i></button>
-                    <button><i class='bx bx-align-middle' ></i></button>
-                    <button><i class='bx bx-align-right' ></i></button>
-                    <button><i class='bx bx-align-justify' ></i></button>
-                    <button><i class='bx bx-list-ol' ></i></button>
-                    <button><i class='bx bx-list-ul' ></i></button>
-                    <button><i class='bx bx-link' ></i></button>
-                    <button><i class='bx bx-unlink' ></i></button>
-                    <button><i class='bx bx-code-alt' ></i></button>
+                    <button><i class='bx bx-underline'></i></button>
+                    <button><i class='bx bx-italic'></i></button>
+                    <button><i class='bx bx-strikethrough'></i></button>
+                    <button><i class='bx bx-align-left'></i></button>
+                    <button><i class='bx bx-align-middle'></i></button>
+                    <button><i class='bx bx-align-right'></i></button>
+                    <button><i class='bx bx-align-justify'></i></button>
+                    <button><i class='bx bx-list-ol'></i></button>
+                    <button><i class='bx bx-list-ul'></i></button>
+                    <button><i class='bx bx-link'></i></button>
+                    <button><i class='bx bx-unlink'></i></button>
+                    <button><i class='bx bx-code-alt'></i></button>
                 </div>
             </div>
             <div id="content" contenteditable="true" spellcheck="false"></div>
         </div>
+
+        <!-- Modal for saving files -->
+        <div id="saveModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Save File</h2>
+                <button id="saveFileButton">Save</button>
+            </div>
+        </div>
     </body>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="script.js"></script>
 </html>
