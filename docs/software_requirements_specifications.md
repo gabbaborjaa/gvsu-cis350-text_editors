@@ -9,7 +9,13 @@ This purpose of this document is to highlight the functionalities, behaviors and
  2. <Functional Requirement 2> 
  3. <And so on> 
 
-2. The user shall be able to download their document as a PDF.
+2. Edit Text
+ 1. <Functional Requirement> 
+
+3. Convert content in editor to HTML
+ 1. The user shall be able to press a toggleable button to convert content in the editor to HTML code.
+
+4. The user shall be able to download their document as a PDF.
  1.
  2.
 
