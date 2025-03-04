@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     boldButton.addEventListener("click", () => executeCommand("bold"));
-
+    
     fileSelect.addEventListener("change", () => {
         if (fileSelect.value !== "new") {
             modal.style.display = "block";
