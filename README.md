@@ -21,7 +21,7 @@ Writing is an essential part of everyday life, whether for work, school, or pers
 
 ## 3.1 Use Case Diagram
 
-[Use Case Diagram](/artifacts/use_case_diagram.png)
+[Use Case Diagram](/artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
 ## 3.2 Class Diagram
 
 ## 3.3 Sequence Diagram
