@@ -1,20 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById("content");
     const fileSelect = document.getElementById("fileSelect");
-    const boldButton = document.querySelector(".bx-bold");
-    const saveFileButton = document.getElementById("saveFileButton");
     const undoButton = document.querySelector(".bx-undo");
     const redoButton = document.querySelector(".bx-redo");
+    const boldButton = document.querySelector(".bx-bold");
+    const underlineButton = document.querySelector(".bx-underline");
+    const italicButton = document.querySelector(".bx-italic");
+    const strikethroughButton = document.querySelector(".bx-strikethrough");
+    const alignLeftButton = document.querySelector(".bx-align-left");
+    const alignMiddleButton = document.querySelector(".bx-align-middle");
+    const alignRightButton = document.querySelector(".bx-align-right");
+    const alignJustifyButton = document.querySelector(".bx-align-justify");
+    const orderedListButton = document.querySelector(".bx-list-ol");
+    const unorderedListButton = document.querySelector(".bx-list-ul");
+    const addLinkButton = document.querySelector(".bx-link");
+    const unlinkButton = document.querySelector(".bx-unlink");
+    const saveFileButton = document.getElementById("saveFileButton");
     const modal = document.getElementById("saveModal");
     const filenameInput = document.getElementById("file_name");
     const closeModal = document.querySelector(".close");
 
-    function executeCommand(command, value = null) {
-        document.execCommand(command, false, value);
-    }
-
+    undoButton.addEventListener("click", () => executeCommand("undo"));
+    redoButton.addEventListener("click", () => executeCommand("redo"));
     boldButton.addEventListener("click", () => executeCommand("bold"));
+    underlineButton.addEventListener("click", () => executeCommand("underline"));
+    italicButton.addEventListener("click", () => executeCommand("italic"));
+    strikethroughButton.addEventListener("click", () => executeCommand("strikeThrough"));
+    alignLeftButton.addEventListener("click", () => executeCommand("justifyLeft"));
+    alignMiddleButton.addEventListener("click", () => executeCommand("justifyCenter"));
+    alignRightButton.addEventListener("click", () => executeCommand("justifyRight"));
+    alignJustifyButton.addEventListener("click", () => executeCommand("justifyFull"));
+    orderedListButton.addEventListener("click", () => executeCommand("insertOrderedList"));
+    unorderedListButton.addEventListener("click", () => executeCommand("insertUnorderedList"));
+    addLinkButton.addEventListener("click", () => addLink());
+    unlinkButton.addEventListener("click", () => executeCommand("unlink"));
     
+
     fileSelect.addEventListener("change", () => {
         if (fileSelect.value !== "new") {
             modal.style.display = "block";
@@ -51,16 +72,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    undoButton.addEventListener("click", () => executeCommand("undo"));
-    redoButton.addEventListener("click", () => executeCommand("redo"));
-
     function getMimeType(filetype) {
         switch (filetype) {
-            case 'pdf': return 'application/pdf';
-            case 'md': return 'text/markdown';
-            case 'txt': return 'text/plain';
-            case 'docx': return 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-            default: return 'application/octet-stream';
+            case "pdf": return "application/pdf";
+            case "md": return "text/markdown";
+            case "txt": return "text/plain";
+            case "docx": return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            default: return "application/octet-stream";
         }
     }
 });
+
+function executeCommand(cmd, value=null) {
+	if(value) {
+		document.execCommand(cmd, false, value);
+	} else {
+		document.execCommand(cmd);
+	}
+}
+
+function addLink() {
+    const url = prompt("Insert URL");
+    executeCommand("createLink", url);
+}
