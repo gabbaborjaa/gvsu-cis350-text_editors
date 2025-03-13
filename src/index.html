@@ -6,19 +6,23 @@
         <title>Jotter</title>
         <link rel="stylesheet" href="styles.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     </head>
     <body>
+        <script src="/eel.js"></script>
+        <script src="script.js"></script>
         <div class="container">
             <div class="toolbar">
                 <div class="head">
                     <input type="text" placeholder="Untitled" value ="untitiled">
-                    <select>
-                        <option value="" selected="" hidden="" disabled="">File</option>
+                    <select id="file-options">
+                        <option value="" selected hidden disabled>File</option>
                         <option value="new">New File</option>
                         <option value="txt">Save as .txt</option>
                         <option value="pdf">Save as .pdf</option>
+                        <option value="load">Load File</option>
                     </select>
+                    <input type="file" id="file-input" accept=".txt" style="display: none;">
+
                     <select>
                         <option value="" selected="" hidden="" disabled="">Format</option>
                         <option value="h1">Heading 1</option>
