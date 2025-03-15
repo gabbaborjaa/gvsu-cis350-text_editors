@@ -2,7 +2,7 @@ import eel
 import os
 from fpdf import FPDF
 import markdown
-from docx import Document
+#from docx import Document
 
 eel.init("src")
 

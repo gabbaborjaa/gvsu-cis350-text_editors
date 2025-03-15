@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById("content");
+    const loadButton = document.getElementById("load-button");
     const fileSelect = document.getElementById("fileSelect");
     const undoButton = document.querySelector(".bx-undo");
     const redoButton = document.querySelector(".bx-redo");
@@ -17,8 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const unlinkButton = document.querySelector(".bx-unlink");
     const saveFileButton = document.getElementById("saveFileButton");
     const modal = document.getElementById("saveModal");
-    const filenameInput = document.getElementById("file_name");
+    const filenameInput = document.getElementById("file-name");
     const closeModal = document.querySelector(".close");
+    const filePicker = document.getElementById("file-input");
 
     undoButton.addEventListener("click", () => executeCommand("undo"));
     redoButton.addEventListener("click", () => executeCommand("redo"));
@@ -34,8 +36,26 @@ document.addEventListener("DOMContentLoaded", () => {
     unorderedListButton.addEventListener("click", () => executeCommand("insertUnorderedList"));
     addLinkButton.addEventListener("click", () => addLink());
     unlinkButton.addEventListener("click", () => executeCommand("unlink"));
-    
+    loadButton.addEventListener("click", () => filePicker.click());
 
+    filePicker.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            filenameInput.value = file.name;
+            const reader = new FileReader();
+            // Define callback function for Reader
+
+            filenameInput.value = file.name;
+            reader.onload = (e) => {
+                content.innerHTML = e.target.result; // Set the text of the content div
+            };
+            //Calls onload after reading the file
+            reader.readAsText(file);
+            filePicker.value = "";
+
+        }
+    });
+    
     fileSelect.addEventListener("change", () => {
         if (fileSelect.value !== "new") {
             modal.style.display = "block";
