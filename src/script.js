@@ -8,23 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = document.querySelector(".close");
     const filePicker = document.getElementById("file-input");
 
-    // Rich Text Formatting Buttons
-    document.querySelector(".bx-undo").addEventListener("click", () => executeCommand("undo"));
-    document.querySelector(".bx-redo").addEventListener("click", () => executeCommand("redo"));
-    document.querySelector(".bx-bold").addEventListener("click", () => executeCommand("bold"));
-    document.querySelector(".bx-underline").addEventListener("click", () => executeCommand("underline"));
-    document.querySelector(".bx-italic").addEventListener("click", () => executeCommand("italic"));
-    document.querySelector(".bx-strikethrough").addEventListener("click", () => executeCommand("strikeThrough"));
-    document.querySelector(".bx-align-left").addEventListener("click", () => executeCommand("justifyLeft"));
-    document.querySelector(".bx-align-middle").addEventListener("click", () => executeCommand("justifyCenter"));
-    document.querySelector(".bx-align-right").addEventListener("click", () => executeCommand("justifyRight"));
-    document.querySelector(".bx-align-justify").addEventListener("click", () => executeCommand("justifyFull"));
-    document.querySelector(".bx-list-ol").addEventListener("click", () => executeCommand("insertOrderedList"));
-    document.querySelector(".bx-list-ul").addEventListener("click", () => executeCommand("insertUnorderedList"));
-    document.querySelector(".bx-link").addEventListener("click", () => addLink());
-    document.querySelector(".bx-unlink").addEventListener("click", () => executeCommand("unlink"));
     loadButton.addEventListener("click", () => filePicker.click());
 
+    document.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", function() {
+            this.classList.toggle("active");
+        });
+    });
 
     // Color selector
     document.getElementById("colorPicker").addEventListener("input", function () {
@@ -54,7 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const highlightColor = computedStyle.backgroundColor.match(/\d+/g);
     
         if (textColor) colorPicker.value = toHex(textColor);
-        if (highlightColor && highlightColor.join("") != "255255255") highlightPicker.value = toHex(bgColor);
+        if (highlightColor && highlightColor.join("") != "255255255") highlightPicker.value = toHex(highlightColor);
+    });
+
+    // Makes links clickable
+    content.addEventListener("mouseenter", function () {
+        const a = content.querySelectorAll('a');
+        a.forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                content.setAttribute('contenteditable', false);
+                item.target = '_blank';
+            })
+            item.addEventListener('mouseleave', function () {
+                content.setAttribute('contenteditable', true);
+            })
+        })
     });
 
     filePicker.addEventListener("change", (event) => {
@@ -122,13 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function executeCommand(cmd, value=null) {
-	if(value) {
-		document.execCommand(cmd, false, value);
-	} else {
-		document.execCommand(cmd);
-	}
+function executeCommand(cmd, value = null) {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0 && !selection.isCollapsed) {
+        document.execCommand(cmd, false, value);
+        return;
+    }
+    content.focus();
+    const range = document.createRange();
+    range.selectNodeContents(content);
+    range.collapse(false);
+
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    if (value) {
+        document.execCommand(cmd, false, value);
+    } else {
+        document.execCommand(cmd);
+    }
 }
+
 
 function addLink() {
     const url = prompt("Insert URL");
