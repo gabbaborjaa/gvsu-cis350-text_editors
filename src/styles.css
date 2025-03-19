@@ -109,6 +109,10 @@ body {
     font-size: 18px;
 }
 
+.toolbar .buttons button.active {
+    border-color: black;
+}
+
 .toolbar .buttons button:hover {
     background:#ffffff;
 }

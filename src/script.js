@@ -2,41 +2,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById("content");
     const loadButton = document.getElementById("load-button");
     const fileSelect = document.getElementById("fileSelect");
-    const undoButton = document.querySelector(".bx-undo");
-    const redoButton = document.querySelector(".bx-redo");
-    const boldButton = document.querySelector(".bx-bold");
-    const underlineButton = document.querySelector(".bx-underline");
-    const italicButton = document.querySelector(".bx-italic");
-    const strikethroughButton = document.querySelector(".bx-strikethrough");
-    const alignLeftButton = document.querySelector(".bx-align-left");
-    const alignMiddleButton = document.querySelector(".bx-align-middle");
-    const alignRightButton = document.querySelector(".bx-align-right");
-    const alignJustifyButton = document.querySelector(".bx-align-justify");
-    const orderedListButton = document.querySelector(".bx-list-ol");
-    const unorderedListButton = document.querySelector(".bx-list-ul");
-    const addLinkButton = document.querySelector(".bx-link");
-    const unlinkButton = document.querySelector(".bx-unlink");
     const saveFileButton = document.getElementById("saveFileButton");
     const modal = document.getElementById("saveModal");
     const filenameInput = document.getElementById("file-name");
     const closeModal = document.querySelector(".close");
     const filePicker = document.getElementById("file-input");
 
-    undoButton.addEventListener("click", () => executeCommand("undo"));
-    redoButton.addEventListener("click", () => executeCommand("redo"));
-    boldButton.addEventListener("click", () => executeCommand("bold"));
-    underlineButton.addEventListener("click", () => executeCommand("underline"));
-    italicButton.addEventListener("click", () => executeCommand("italic"));
-    strikethroughButton.addEventListener("click", () => executeCommand("strikeThrough"));
-    alignLeftButton.addEventListener("click", () => executeCommand("justifyLeft"));
-    alignMiddleButton.addEventListener("click", () => executeCommand("justifyCenter"));
-    alignRightButton.addEventListener("click", () => executeCommand("justifyRight"));
-    alignJustifyButton.addEventListener("click", () => executeCommand("justifyFull"));
-    orderedListButton.addEventListener("click", () => executeCommand("insertOrderedList"));
-    unorderedListButton.addEventListener("click", () => executeCommand("insertUnorderedList"));
-    addLinkButton.addEventListener("click", () => addLink());
-    unlinkButton.addEventListener("click", () => executeCommand("unlink"));
+    // Rich Text Formatting Buttons
+    document.querySelector(".bx-undo").addEventListener("click", () => executeCommand("undo"));
+    document.querySelector(".bx-redo").addEventListener("click", () => executeCommand("redo"));
+    document.querySelector(".bx-bold").addEventListener("click", () => executeCommand("bold"));
+    document.querySelector(".bx-underline").addEventListener("click", () => executeCommand("underline"));
+    document.querySelector(".bx-italic").addEventListener("click", () => executeCommand("italic"));
+    document.querySelector(".bx-strikethrough").addEventListener("click", () => executeCommand("strikeThrough"));
+    document.querySelector(".bx-align-left").addEventListener("click", () => executeCommand("justifyLeft"));
+    document.querySelector(".bx-align-middle").addEventListener("click", () => executeCommand("justifyCenter"));
+    document.querySelector(".bx-align-right").addEventListener("click", () => executeCommand("justifyRight"));
+    document.querySelector(".bx-align-justify").addEventListener("click", () => executeCommand("justifyFull"));
+    document.querySelector(".bx-list-ol").addEventListener("click", () => executeCommand("insertOrderedList"));
+    document.querySelector(".bx-list-ul").addEventListener("click", () => executeCommand("insertUnorderedList"));
+    document.querySelector(".bx-link").addEventListener("click", () => addLink());
+    document.querySelector(".bx-unlink").addEventListener("click", () => executeCommand("unlink"));
     loadButton.addEventListener("click", () => filePicker.click());
+
+
+    // Color selector
+    document.getElementById("colorPicker").addEventListener("input", function () {
+        executeCommand("forecolor", this.value)
+    });
+
+    // Highlight selector
+    document.getElementById("highlightPicker").addEventListener("input", function () {
+        executeCommand("hiliteColor", this.value)
+    });
+
+    // Change color and highlight selectors based on text content
+    document.addEventListener("selectionchange", () => {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+    
+        const parentElement = selection.getRangeAt(0).commonAncestorContainer.parentElement;
+        if (!parentElement) return;
+    
+        const computedStyle = window.getComputedStyle(parentElement);
+    
+        const toHex = (rgb) => 
+            `#${rgb.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('')}`;
+    
+        // Extract and update colors
+        const textColor = computedStyle.color.match(/\d+/g);
+        const highlightColor = computedStyle.backgroundColor.match(/\d+/g);
+    
+        if (textColor) colorPicker.value = toHex(textColor);
+        if (highlightColor && highlightColor.join("") != "255255255") highlightPicker.value = toHex(bgColor);
+    });
 
     filePicker.addEventListener("change", (event) => {
         const file = event.target.files[0];
