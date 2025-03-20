@@ -29,12 +29,31 @@ Jotter aims to be the perfect solution for students, professionals, and casual w
 # 3 Architectural Design
 
 ## 3.1 Use Case Diagram
-
-[Use Case Diagram](/artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
+<p align="center">
+  <img src="./artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png" width="300" title="Use_Case">
+  <br>
+  Figure 1: Use Case Diagram
+</p>
 ## 3.2 Class Diagram
 
 ## 3.3 Sequence Diagram
+<p align="center">
+  <img src="./artifacts/sequence_diagram/Figure1.png" width="300" title="Figure 2">
+  <br>
+  Figure 2: Sequence Diagram for Editing Documents
+</p>
 
+<p align="center">
+  <img src="./artifacts/sequence_diagram/Figure2.png" width="300" title="Figure 3">
+  <br>
+  Figure 3: Sequence Diagram for Loading Documents
+</p>
+
+<p align="center">
+  <img src="./artifacts/sequence_diagram/Figure3.png" width="300" title="Figure 4">
+  <br>
+  Figure 3: Sequence Diagram for Saving Documents
+</p>
 # User Guide/Implementation
 
 # Risk Analysis/Retrospective
