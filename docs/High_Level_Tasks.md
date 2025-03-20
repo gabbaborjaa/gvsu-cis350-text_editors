@@ -1,16 +1,46 @@
 # High Level Tasks for Jotter
 
 **Tasks Complete**
+- Figma Mockup
+  - Design UI in Figma
+  - 2 weeks
+  - John, Charlie
 - Create Abstract
+  - Write Abstract for Project Description
+  - 1 day
+  - Charlie
 - Use Case Diagram
+  - Create Use Case Diagram
+  - 3 days
+  - John
 - Text Formating Logic
+  - Implement formatting (bold, italic, etc.) 
+  - 1 week
+  - John
 - Front End Development
+  - Implement UI in HTML/CSS with working input
+  - 1 week
+  - John, Charlie
 - Undo Redo Features
+  - Implement undo redo buttons
+  - 1 week
+  - Gab
 - Introduction
-- Italic, Underline, Strikethrough Button
+  - Write Introduction for Project Description
+  - 2 days
+  - Charlie, Gab
 - File Access Features
+  - Implement accessing files to upload and save
+  - 3 weeks
+  - Cardell, Gab
 - Left, Middle, Center Alignment
+  - Implement alignment buttons
+  - 1 week
+  - John
 - Color & Highlight Button
+  - Implement color and highlight feature
+  - 2 weeks
+  - John
 
 **Tasks to be completed**
 - Sequence Diagram
@@ -19,9 +49,9 @@
 - Backend Development
   - Develop the backend functionaility of Jotter
   - 2 weeks
-  - Team
-- Active Button Selector Bugs
-  - Revise Active Button Selecter in Jotter Menu
+  - Cardell, Gab
+- Active Button Selector
+  - Implement showing which format option is active
   - 2 days
   - John
 - Heading Dropdown Menu
@@ -31,8 +61,12 @@
 - Class Diagram
   - Create Class Diagram
   - 2 weeks
-  - Team
+  - Charlie, Gab, John
 - Theme Customization
   - Create Background theme for Jotter
   - 3 weeks
   - Cardell
+- Button shortcuts
+  - Implement button shortcuts for text formatting options
+  - 1 week
+  - John, Charlie

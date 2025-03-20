@@ -127,19 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function executeCommand(cmd, value = null) {
-    const selection = window.getSelection();
-    if (selection.rangeCount > 0 && !selection.isCollapsed) {
-        document.execCommand(cmd, false, value);
-        return;
-    }
     content.focus();
-    const range = document.createRange();
-    range.selectNodeContents(content);
-    range.collapse(false);
-
-    selection.removeAllRanges();
-    selection.addRange(range);
-
     if (value) {
         document.execCommand(cmd, false, value);
     } else {
