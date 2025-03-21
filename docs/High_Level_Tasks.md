@@ -70,3 +70,7 @@
   - Implement button shortcuts for text formatting options
   - 1 week
   - John, Charlie
+- Find and Replace
+  - Implement ability to find and replace words
+  - 2 weeks
+  - John, Charlie
