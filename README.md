@@ -1,4 +1,4 @@
-# The Text Editors
+# Jotter
 
 A super cool text editor that allows you to customize colors, exports to PDF's, has amazing version control, undo's and redo's your progress and everything else that a super cool editor does for all your everyday tasks.
 
