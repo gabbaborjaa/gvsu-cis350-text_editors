@@ -10,9 +10,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadButton.addEventListener("click", () => filePicker.click());
 
+    // Active toggle
     document.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", function() {
-            this.classList.toggle("active");
+        button.addEventListener("click", function () {
+            const alignButtons = ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"];
+            const listButtons = ["insertOrderedList", "insertUnorderedList"];
+            const nonToggleButtons = ["undo", "redo", "unlink", "addLink()"];
+            const command = this.getAttribute("onclick")
+        
+            if (nonToggleButtons.includes(command)) return;
+    
+            if (alignButtons.includes(command)) {
+                alignButtons.forEach(cmd => {
+                    document.querySelector(`button[onclick="executeCommand('${cmd}')"]`)?.classList.remove("active");
+                });
+                this.classList.add("active");
+            } 
+            else if (listButtons.includes(command)) {
+                let isActive = this.classList.contains("active");
+                listButtons.forEach(cmd => {
+                    document.querySelector(`button[onclick="executeCommand('${cmd}')"]`)?.classList.remove("active");
+                });
+                if (!isActive) this.classList.add("active");
+            } 
+            else {
+                this.classList.toggle("active");
+            }
         });
     });
 
@@ -26,26 +49,50 @@ document.addEventListener("DOMContentLoaded", () => {
         executeCommand("hiliteColor", this.value)
     });
 
-    // Change color and highlight selectors based on text content
+    // Change button toggle based on cursor location
     document.addEventListener("selectionchange", () => {
         const selection = window.getSelection();
         if (!selection.rangeCount) return;
-    
         const parentElement = selection.getRangeAt(0).commonAncestorContainer.parentElement;
-        if (!parentElement) return;
-    
+        if (!parentElement || content.textContent === "") return;
+        if (!parentElement.closest("#content")) return;
         const computedStyle = window.getComputedStyle(parentElement);
     
-        const toHex = (rgb) => 
+        const toHex = (rgb) =>
             `#${rgb.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('')}`;
     
-        // Extract and update colors
         const textColor = computedStyle.color.match(/\d+/g);
         const highlightColor = computedStyle.backgroundColor.match(/\d+/g);
-    
+        
         if (textColor) colorPicker.value = toHex(textColor);
         if (highlightColor && highlightColor.join("") != "255255255") highlightPicker.value = toHex(highlightColor);
+    
+        const commands = {
+            "bold": "fontWeight", "italic": "fontStyle", "underline": "textDecorationLine", "strikeThrough": "textDecorationLine",
+            "justifyLeft": "textAlign", "justifyCenter": "textAlign", "justifyRight": "textAlign", "justifyFull": "textAlign",
+            "insertOrderedList": "listStyleType", "insertUnorderedList": "listStyleType",
+        };
+    
+        Object.keys(commands).forEach(command => {
+            const button = document.querySelector(`button[onclick="executeCommand('${command}')"]`);
+            if (!button) return;
+            const style = computedStyle[commands[command]];
+            if (
+                (command === "bold" && style === "700") ||
+                (command === "italic" && style === "italic") ||
+                (command === "underline" && style.includes("underline")) ||
+                (command === "strikeThrough" && style.includes("line-through")) ||
+                (command.startsWith("justify") && style === command.replace("justify", "").toLowerCase()) ||
+                (command === "insertOrderedList" && parentElement.tagName === "OL") ||
+                (command === "insertUnorderedList" && parentElement.tagName === "UL")
+            ) {
+                button.classList.add("active");
+            } else {
+                button.classList.remove("active");
+            }
+        });
     });
+    
 
     // Makes links clickable
     content.addEventListener("mouseenter", function () {
@@ -60,6 +107,21 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     });
+
+    // HTML toggle
+    const showCode = document.getElementById('show-code');
+    let active = false;
+    showCode.addEventListener('click', function () {
+        active = !active
+        showCode.dataset.active = active.toString()
+        if(active) {
+            content.textContent = content.innerHTML;
+            content.setAttribute('contenteditable', false);
+        } else {
+            content.innerHTML = content.textContent;
+            content.setAttribute('contenteditable', true);
+        }
+    })
 
     filePicker.addEventListener("change", (event) => {
         const file = event.target.files[0];
@@ -127,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function executeCommand(cmd, value = null) {
+    content.blur()
     content.focus();
     if (value) {
         document.execCommand(cmd, false, value);

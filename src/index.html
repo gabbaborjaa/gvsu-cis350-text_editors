@@ -22,7 +22,7 @@
                         <option value="md">Save as .md</option>
                         <option value="docx">Save as .docx</option>
                     </select>
-                    <select>
+                    <select onchange="executeCommand('formatBlock', this.value); this.selectedIndex=0;">
                         <option value="" selected hidden disabled>Format</option>
                         <option value="h1">Heading 1</option>
                         <option value="h2">Heading 2</option>
@@ -32,7 +32,7 @@
                         <option value="h6">Heading 6</option>
                         <option value="p">Paragraph</option>
                     </select>
-                    <select>
+                    <select onchange="executeCommand('fontSize', this.value); this.selectedIndex=0;">
                         <option value="" selected hidden disabled>Font Size</option>
                         <option value="1">Extra Small</option>
                         <option value="2">Small</option>
@@ -66,7 +66,7 @@
                     <button onclick="executeCommand('insertUnorderedList')"><i class='bx bx-list-ul'></i></button>
                     <button onclick="addLink()"><i class='bx bx-link'></i></button>
                     <button onclick="executeCommand('unlink')"><i class='bx bx-unlink'></i></button>
-                    <button><i class='bx bx-code-alt'></i></button>
+                    <button id="show-code" data-active="false"><i class='bx bx-code-alt'></i></button>
                 </div>
             </div>
             <div id="content" contenteditable="true" spellcheck="false"></div>
