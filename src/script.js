@@ -2,13 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById("content");
     const loadButton = document.getElementById("load-button");
     const fileSelect = document.getElementById("fileSelect");
-    const saveFileButton = document.getElementById("saveFileButton");
+    const saveButton = document.getElementById("saveButton");
     const modal = document.getElementById("saveModal");
     const filenameInput = document.getElementById("file-name");
     const closeModal = document.querySelector(".close");
     const filePicker = document.getElementById("file-input");
 
     loadButton.addEventListener("click", () => filePicker.click());
+    // saveButton.addEventListener("click", () => filePicker.click());
+
 
     // Active toggle
     document.querySelectorAll("button").forEach(button => {
@@ -157,35 +159,114 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    saveFileButton.addEventListener("click", async () => {
-        const filetype = fileSelect.value;
-        const filename = filenameInput.value;
-        if (filename) {
-            const contentText = content.innerHTML;
-            const response = await eel.save_file(filename, contentText, filetype)();
-            if (response.includes("already exists")) {
-                const override = confirm(response);
-                if (override) {
-                    await eel.save_file(filename, contentText, filetype, true)().then(alert);
-                }
-            } else {
-                alert(response);
-            }
-            modal.style.display = "none";
-        } else {
-            alert("Please enter a filename.");
+    // saveButton.addEventListener("click", async () => {
+    //     const filetype = fileSelect.value;
+    //     const filename = filenameInput.value;
+    //     if (filename) {
+    //         const contentText = content.innerHTML;
+    //         const response = await eel.save_file(filename, contentText, filetype)();
+    //         if (response.includes("already exists")) {
+    //             const override = confirm(response);
+    //             if (override) {
+    //                 await eel.save_file(filename, contentText, filetype, true)().then(alert);
+    //             }
+    //         } else {
+    //             alert(response);
+    //         }
+    //         modal.style.display = "none";
+    //     } else {
+    //         alert("Please enter a filename.");
+    //     }
+    // });
+
+    // saveButton.addEventListener("click", () => {
+    //     const filetype = fileSelect.value;
+    //     const filename = filenameInput.value || "untitled";
+    //     const contentText = content.innerHTML;
+    
+    //     if (!filetype) {
+    //         alert("Please select a file type.");
+    //         return;
+    //     }
+    
+    //     let blob;
+    //     switch (filetype) {
+    //         case "txt":
+    //             blob = new Blob([contentText], { type: "text/plain;charset=utf-8" });
+    //             break;
+    //         case "md":
+    //             blob = new Blob([contentText], { type: "text/markdown;charset=utf-8" });
+    //             break;
+    //         case "pdf":
+    //             alert("PDF export is not supported directly in the browser. Use the backend for this.");
+    //             return;
+    //         case "docx":
+    //             alert("DOCX export is not supported directly in the browser. Use the backend for this.");
+    //             return;
+    //         default:
+    //             alert("Unsupported file type.");
+    //             return;
+    //     }
+    
+    //     saveAs(blob, `${filename}.${filetype}`);
+    //     modal.style.display = "none";
+    // });
+
+    
+    saveButton.addEventListener("click", async () => {
+        const filetype = fileSelect.value; // Get the selected file type
+        const filename = filenameInput.value || "untitled"; // Default filename
+        const contentText = content.innerHTML; // Get the content from the editor
+    
+        if (!filetype) {
+            alert("Please select a file type.");
+            return;
+        }
+    
+        try {
+            // Use the File Picker API to save the file
+            const options = {
+                suggestedName: `${filename}.${filetype}`,
+                types: [
+                    {
+                        description: `${filetype.toUpperCase()} File`,
+                        accept: {
+                            [getMimeType(filetype)]: [`.${filetype}`],
+                        },
+                    },
+                ],
+            };
+    
+            const handle = await window.showSaveFilePicker(options);
+            const writable = await handle.createWritable();
+    
+            // Write the content to the file
+            await writable.write(contentText);
+            await writable.close();
+    
+            alert(`File saved successfully as ${filename}.${filetype}`);
+        } catch (error) {
+            console.error("Error saving file:", error);
+            alert("Failed to save the file.");
         }
     });
-
+    
+    // Helper function to get MIME type based on file type
     function getMimeType(filetype) {
         switch (filetype) {
-            case "pdf": return "application/pdf";
-            case "md": return "text/markdown";
-            case "txt": return "text/plain";
-            case "docx": return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            default: return "application/octet-stream";
+            case "pdf":
+                return "application/pdf";
+            case "md":
+                return "text/markdown";
+            case "txt":
+                return "text/plain";
+            case "docx":
+                return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            default:
+                return "application/octet-stream";
         }
     }
+   
 });
 
 function executeCommand(cmd, value = null) {
