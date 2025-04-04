@@ -11,7 +11,7 @@ A super cool text editor that allows you to customize colors, exports to PDF's, 
 
 # Prerequisites
 
-# Run Instuctions
+# Run Instructions
 
 # 1 Abstract
 Writing is an essential part of everyday life, whether for work, school, or personal projects. However, finding a simple, efficient, and user-friendly text editor that meets individual needs can be challenging. Many existing editors are either too complex, lack necessary features, or fail to provide an intuitive experience. Our text editor "Jotter" aims to develop a text editor that balances functionality and ease of use, providing users with a seamless writing experience. The editor will offer essential text editing features, such as formatting, saving, and loading documents. By creating an intuitive and accessible tool, our goal is to streamline the writing process and enhance productivity for users across various domains.
@@ -34,6 +34,7 @@ Jotter aims to be the perfect solution for students, professionals, and casual w
   <br>
   Figure 1: Use Case Diagram
 </p>
+
 ## 3.2 Class Diagram
 
 ## 3.3 Sequence Diagram
@@ -54,10 +55,25 @@ Jotter aims to be the perfect solution for students, professionals, and casual w
   <br>
   Figure 3: Sequence Diagram for Saving Documents
 </p>
-# User Guide/Implementation
 
-# Risk Analysis/Retrospective
+# 4 User Guide/Implementation
 
-# Future Scope
+## 4.1 Downloading Jotter
+1. Download the Jotter application from the official website.
+2. Launch Jotter from your applications menu.
 
-# Conclusion
+## 4.2 Creating and Opening Files
+1. To create a file, simply use the automatically generated file to write in and you'll be able to save this as different file formats later. If the document is already filled, save the document (see 4.4) and once you've checked it was saved correctly, delete the content in the document and you can now use it as a new document.
+2. To open a file, click on the "Load" button which is placed in the upper-left corner, but just right of the title box.
+
+## 4.3 Editing Tools
+Jotter gives you the tools to add emphasis to your writing. You can change the font, font size, color, and highlight color by using the buttons in the top row of the toolbar. In the second row of available tools, there are buttons to: undo, redo, bold, underline, italicize, left-align, middle-align, right-align, justified-align, create numbered lists, create bullet points, add link, and toggle source code.
+
+## 4.4 Saving and Exporting
+To save and export your document, click on "File" which is just right of the "Load" button. Click save to .txt to save as a text file.
+
+# 5 Risk Analysis/Retrospective
+
+# 6 Future Scope
+
+# 7 Conclusion
