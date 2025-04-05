@@ -12,6 +12,7 @@
             <div class="toolbar">
                 <div class="head">
                     <input id="file-name" type="text" placeholder="Untitled" value="untitled">
+                    <button id="new-button" class="toolbar-button"><i class='bx bx-file'></i></button> 
                     <button id="load-button" class="toolbar-button"><i class='bx bx-folder-open'></i></button>
                     <button id="save-button" class="toolbar-button"><i class='bx bx-save'></i></button>
                     <input type = "file", id="file-input" accept=".txt" style="display: none;">
@@ -82,6 +83,8 @@
             </div>
         </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.29.0/docxtemplater.min.js"></script>
     <script type="text/javascript" src="/eel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="script.js"></script>

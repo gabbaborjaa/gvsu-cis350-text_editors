@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     loadButton.addEventListener("click", () => filePicker.click());
     // saveButton.addEventListener("click", () => filePicker.click());
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const newButton = document.getElementById("new-button");
+
+        newButton.addEventListener("click", () => {
+            window.open(window.location.href, "_blank");
+        })
+    })
 
     // Active toggle
     document.querySelectorAll("button").forEach(button => {
@@ -141,21 +148,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    filePicker.addEventListener("change", (event) => {
+    filePicker.addEventListener("change", async (event) => {
         const file = event.target.files[0];
         if (file) {
-            filenameInput.value = file.name;
+            const fileExtension = file.name.split('.').pop().toLowerCase(); // Get the file extension
+            filenameInput.value = file.name; // Set the filename input value
+
             const reader = new FileReader();
-            // Define callback function for Reader
 
-            filenameInput.value = file.name;
-            reader.onload = (e) => {
-                content.innerHTML = e.target.result; // Set the text of the content div
-            };
-            //Calls onload after reading the file
-            reader.readAsText(file);
-            filePicker.value = "";
+            if (fileExtension === "txt") {
+                // Handle .txt files
+                reader.onload = (e) => {
+                    const plainText = e.target.result;
+                    const formattedText = plainText
+                        .replace(/&/g, "&amp;") // Escape special characters
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/\n/g, "<br>") // Preserve line breaks
+                        .replace(/ {2}/g, "&nbsp;&nbsp;"); // Preserve multiple spaces
+                    content.innerHTML = formattedText; // Set the formatted text in the content div
+                };
+                reader.readAsText(file); // Read the file as plain text
+            } else if (fileExtension === "md") {
+                // Handle .md files
+                reader.onload = (e) => {
+                    const markdownText = e.target.result;
+                    content.innerHTML = markdownToHtml(markdownText); // Convert Markdown to HTML
+                };
+                reader.readAsText(file); // Read the file as plain text
+            } else if (fileExtension === "docx") {
+                // Handle .docx files
+                const JSZip = await import("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js");
+                const Docxtemplater = await import("https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.29.0/docxtemplater.min.js");
 
+                const arrayBuffer = await file.arrayBuffer();
+                const zip = new JSZip.default();
+                const doc = new Docxtemplater.default();
+                await zip.loadAsync(arrayBuffer);
+                doc.loadZip(zip);
+
+                const text = doc.getFullText(); // Extract text from the .docx file
+                content.innerHTML = text;
+            } else {
+                alert("Unsupported file type. Please upload a .txt, .md, or .docx file.");
+            }
+
+            filePicker.value = ""; // Reset the file picker
         }
     });
     
@@ -240,30 +278,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         try {
-            // Use the File Picker API to save the file
-            const options = {
-                suggestedName: `${filename}.${filetype}`,
-                types: [
-                    {
-                        description: `${filetype.toUpperCase()} File`,
-                        accept: {
-                            [getMimeType(filetype)]: [`.${filetype}`],
-                        },
-                    },
-                ],
-            };
-    
-            const handle = await window.showSaveFilePicker(options);
-            const writable = await handle.createWritable();
-    
-            // Write the content to the file
-            await writable.write(contentText);
-            await writable.close();
-    
-            alert(`File saved successfully as ${filename}.${filetype}`);
+            // Call the backend save_file function using eel
+            const response = await eel.save_file(filename, contentText, filetype)();
+            if (response.includes("already exists")) {
+                const override = confirm(response); // Ask the user if they want to override
+                if (override) {
+                    const overrideResponse = await eel.save_file(filename, contentText, filetype, true)();
+                    alert(overrideResponse); // Show the response from the backend
+                }
+            } else {
+                alert(response); // Show the response from the backend
+            }
         } catch (error) {
             console.error("Error saving file:", error);
-            alert("Failed to save the file.");
+            alert("Failed to save the file. Please try again.");
         }
     });
     
@@ -301,5 +329,10 @@ function addLink() {
     executeCommand("createLink", url);
 }
 
+window.addEventListener("beforeunload", (event) => {
+    // Display a warning message
+    event.preventDefault();
+    event.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+});
 
 module.exports = executeCommand;
