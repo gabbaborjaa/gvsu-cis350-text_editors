@@ -177,18 +177,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
                 reader.readAsText(file); // Read the file as plain text
             } else if (fileExtension === "docx") {
-                // Handle .docx files
-                const JSZip = await import("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js");
-                const Docxtemplater = await import("https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.29.0/docxtemplater.min.js");
-
+                // Handle .docx files using mammoth.js
                 const arrayBuffer = await file.arrayBuffer();
-                const zip = new JSZip.default();
-                const doc = new Docxtemplater.default();
-                await zip.loadAsync(arrayBuffer);
-                doc.loadZip(zip);
 
-                const text = doc.getFullText(); // Extract text from the .docx file
-                content.innerHTML = text;
+                mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+                    .then((result) => {
+                        content.innerHTML = result.value.replace(/\n/g, "<br>"); // Preserve line breaks
+                    })
+                    .catch((err) => {
+                        console.error("Error reading .docx file:", err);
+                        alert("Failed to load the .docx file. Please ensure it is a valid document.");
+                    });
             } else {
                 alert("Unsupported file type. Please upload a .txt, .md, or .docx file.");
             }
