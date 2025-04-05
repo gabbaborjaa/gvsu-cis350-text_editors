@@ -329,6 +329,10 @@ function addLink() {
     executeCommand("createLink", url);
 }
 
+function markdownToHtml(markdownText) {
+    return marked.parse(markdownText); // Convert Markdown to HTML using marked.js
+}
+
 window.addEventListener("beforeunload", (event) => {
     // Display a warning message
     event.preventDefault();
