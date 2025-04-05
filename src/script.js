@@ -17,11 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", function () {
             const alignButtons = ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"];
             const listButtons = ["insertOrderedList", "insertUnorderedList"];
-            const nonToggleButtons = ["undo", "redo", "unlink", "addLink()"];
-            const command = this.getAttribute("onclick")
-        
+            const nonToggleButtons = ["undo", "redo", "unlink", "addLink"];
+            
+            // Extract the command from the onclick attribute
+            const command = this.getAttribute("onclick")?.replace(/executeCommand\('(.+?)'\)/, '$1')?.replace("addLink()", "addLink");
+            
             if (nonToggleButtons.includes(command)) return;
-    
+            
             if (alignButtons.includes(command)) {
                 alignButtons.forEach(cmd => {
                     document.querySelector(`button[onclick="executeCommand('${cmd}')"]`)?.classList.remove("active");
@@ -29,17 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.classList.add("active");
             } 
             else if (listButtons.includes(command)) {
-                let isActive = this.classList.contains("active");
                 listButtons.forEach(cmd => {
                     document.querySelector(`button[onclick="executeCommand('${cmd}')"]`)?.classList.remove("active");
                 });
-                if (!isActive) this.classList.add("active");
+                this.classList.add("active");
             } 
             else {
                 this.classList.toggle("active");
             }
         });
     });
+    
 
     // Color selector
     document.getElementById("colorPicker").addEventListener("input", function () {
@@ -55,17 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("selectionchange", () => {
         const selection = window.getSelection();
         if (!selection.rangeCount) return;
+    
         const parentElement = selection.getRangeAt(0).commonAncestorContainer.parentElement;
         if (!parentElement || content.textContent === "") return;
         if (!parentElement.closest("#content")) return;
+    
         const computedStyle = window.getComputedStyle(parentElement);
     
+        // Helper function to convert RGB to Hex
         const toHex = (rgb) =>
             `#${rgb.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('')}`;
     
+        // Get colors
         const textColor = computedStyle.color.match(/\d+/g);
         const highlightColor = computedStyle.backgroundColor.match(/\d+/g);
-        
+    
+        // Set color pickers based on the selected text color
         if (textColor) colorPicker.value = toHex(textColor);
         if (highlightColor && highlightColor.join("") != "255255255") highlightPicker.value = toHex(highlightColor);
     
@@ -75,18 +82,25 @@ document.addEventListener("DOMContentLoaded", () => {
             "insertOrderedList": "listStyleType", "insertUnorderedList": "listStyleType",
         };
     
+        const isInOrderedList = parentElement.closest("ol");
+        const isInUnorderedList = parentElement.closest("ul");
+    
         Object.keys(commands).forEach(command => {
             const button = document.querySelector(`button[onclick="executeCommand('${command}')"]`);
             if (!button) return;
+    
             const style = computedStyle[commands[command]];
+    
             if (
                 (command === "bold" && style === "700") ||
                 (command === "italic" && style === "italic") ||
                 (command === "underline" && style.includes("underline")) ||
                 (command === "strikeThrough" && style.includes("line-through")) ||
                 (command.startsWith("justify") && style === command.replace("justify", "").toLowerCase()) ||
-                (command === "insertOrderedList" && parentElement.tagName === "OL") ||
-                (command === "insertUnorderedList" && parentElement.tagName === "UL")
+                (isInOrderedList && command === "insertOrderedList") ||
+                (isInUnorderedList && command === "insertUnorderedList") ||
+                (isInOrderedList && command === "insertOrderedList") ||
+                (isInUnorderedList && command === "insertUnorderedList")
             ) {
                 button.classList.add("active");
             } else {
@@ -94,6 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+    
+    
     
 
     // Makes links clickable
@@ -284,3 +300,6 @@ function addLink() {
     const url = prompt("Insert URL");
     executeCommand("createLink", url);
 }
+
+
+module.exports = executeCommand;

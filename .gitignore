@@ -175,3 +175,5 @@ cython_debug/
 # Word Documents
 
 *.docx
+
+node_modules/
