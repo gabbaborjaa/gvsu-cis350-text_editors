@@ -74,7 +74,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const parentElement = selection.getRangeAt(0).commonAncestorContainer.parentElement;
         if (!parentElement || content.textContent === "") return;
         if (!parentElement.closest("#content")) return;
-    
+        
+        const formatDropdown = document.querySelector('select[onchange*="formatBlock"]');
+
+        const currentFormat = parentElement.tagName.toLowerCase();
+
+        Array.from(formatDropdown.options).forEach(option => {
+            if (option.value === currentFormat) {
+                formatDropdown.value = currentFormat;
+            };
+        });
+        if (!Array.from(formatDropdown.options).some(option => option.value === currentFormat)) {
+            formatDropdown.value = "";
+        }
         const computedStyle = window.getComputedStyle(parentElement);
     
         // Helper function to convert RGB to Hex
