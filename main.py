@@ -8,7 +8,7 @@ import flet as ft
 class FileManager:
     def __init__(self):
         eel.init("src")
-        
+
     @eel.expose
     def save_file(self, filename, content, filetype, override=False):
         # Add the correct file extension if not already present
