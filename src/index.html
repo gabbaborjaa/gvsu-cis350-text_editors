@@ -11,47 +11,48 @@
         <div class="container">
             <div class="toolbar">
                 <div class="head">
-                    <input id="file-name" type="text" placeholder="Untitled" value="untitled">
-                    <button id="new-button" class="toolbar-button"><i class='bx bx-file'></i></button> 
+                        <input id="file-name" type="text" placeholder="Untitled" value="untitled">
+                        <button id="new-button" class="toolbar-button"><i class='bx bx-file'></i></button> 
                     <button id="load-button" class="toolbar-button"><i class='bx bx-folder-open'></i></button>
                     <button id="save-button" class="toolbar-button"><i class='bx bx-save'></i></button>
-                    <input type = "file", id="file-input" accept=".txt,.docx,.md" style="display: none;">
-                    <select id="fileSelect">
-                        <option value="" selected hidden disabled>File</option>
-                        <option value="new">New File</option>
-                        <option value="txt">Save as .txt</option>
-                        <option value="pdf">Save as .pdf</option>
-                        <option value="md">Save as .md</option>
-                        <option value="docx">Save as .docx</option>
-                    </select>
-                    <select onchange="executeCommand('formatBlock', this.value); this.selectedIndex=0;">
-                        <option value="" selected hidden disabled>Format</option>
-                        <option value="h1">Heading 1</option>
-                        <option value="h2">Heading 2</option>
-                        <option value="h3">Heading 3</option>
-                        <option value="h4">Heading 4</option>
-                        <option value="h5">Heading 5</option>
-                        <option value="h6">Heading 6</option>
-                        <option value="p">Paragraph</option>
-                    </select>
-                    <select onchange="executeCommand('fontSize', this.value); this.selectedIndex=0;">
-                        <option value="" selected hidden disabled>Font Size</option>
-                        <option value="1">Extra Small</option>
-                        <option value="2">Small</option>
-                        <option value="3">Regular</option>
-                        <option value="4">Medium</option>
-                        <option value="5">Large</option>
-                        <option value="6">Extra Large</option>
-                        <option value="">Big</option>
-                    </select>
-                    <div class="color">
-                        <span>Color</span>
-                        <input id="colorPicker" type="color">
-                    </div>
-                    <div class="color">
-                        <span>Highlight</span>
-                        <input id="highlightPicker" type="color">
-                    </div>
+                        <input type = "file", id="file-input" accept=".txt,.docx,.md" style="display: none;">
+                        <select id="fileSelect">
+                            <option value="" selected hidden disabled>File</option>
+                            <option value="new">New File</option>
+                            <option value="txt">Save as .txt</option>
+                            <option value="pdf">Save as .pdf</option>
+                            <option value="md">Save as .md</option>
+                            <option value="docx">Save as .docx</option>
+                        </select>
+                        <select onchange="executeCommand('formatBlock', this.value); this.selectedIndex=0;">
+                            <option value="" selected hidden disabled>Format</option>
+                            <option value="h1">Heading 1</option>
+                            <option value="h2">Heading 2</option>
+                            <option value="h3">Heading 3</option>
+                            <option value="h4">Heading 4</option>
+                            <option value="h5">Heading 5</option>
+                            <option value="h6">Heading 6</option>
+                            <option value="p">Paragraph</option>
+                        </select>
+                        <select onchange="executeCommand('fontSize', this.value); this.selectedIndex=0;">
+                            <option value="" selected hidden disabled>Font Size</option>
+                            <option value="1">Extra Small</option>
+                            <option value="2">Small</option>
+                            <option value="3">Regular</option>
+                            <option value="4">Medium</option>
+                            <option value="5">Large</option>
+                            <option value="6">Extra Large</option>
+                            <option value="">Big</option>
+                        </select>
+                        <div class="color">
+                            <span>Color</span>
+                            <input id="colorPicker" type="color">
+                        </div>
+                        <div class="color">
+                            <span>Highlight</span>
+                            <input id="highlightPicker" type="color">
+                        </div>
+                        <button id="theme-toggle">Toggle Theme <i class='bx bx-sun'></i></button>
                 </div>
                 <div class="buttons">
                     <button onclick="executeCommand('undo')"><i class='bx bx-undo'></i></button>
@@ -72,6 +73,7 @@
                 </div>
             </div>
             <div id="content" contenteditable="true" spellcheck="false"></div>
+
         </div>
 
         <!-- Modal for saving files -->

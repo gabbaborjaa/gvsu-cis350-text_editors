@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = document.querySelector(".close");
     const filePicker = document.getElementById("file-input");
 
+    const toggleThemeButton = document.getElementById("theme-toggle");
+
+    toggleThemeButton.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
+
     loadButton.addEventListener("click", () => filePicker.click());
     // saveButton.addEventListener("click", () => filePicker.click());
 
