@@ -2,7 +2,7 @@ import eel
 import os
 from fpdf import FPDF
 import markdown
-from docx import Document
+# from docx import Document
 
 eel.init("src")
 
@@ -11,7 +11,6 @@ eel.init("src")
 def save_file(filename, content, filetype, override=False):
     if os.path.exists(filename) and not override:
        return f"File {filename} already exists. Do you want to override it?"
-
     if filetype == 'pdf':
         pdf = FPDF()
         pdf.add_page()
@@ -25,9 +24,10 @@ def save_file(filename, content, filetype, override=False):
         with open(filename, 'w') as file:
             file.write(content)
     elif filetype == 'docx':
-        doc = Document()
-        doc.add_paragraph(content)
-        doc.save(filename + ".docx")
+        pass
+        # doc = Document()
+        # doc.add_paragraph(content)
+        # doc.save(filename + ".docx")
     else:
         return f"Unsupported file type: {filetype}"
     return f"File {filename}.{filetype} saved successfully."
