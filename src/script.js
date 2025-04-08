@@ -17,13 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
     loadButton.addEventListener("click", () => filePicker.click());
     // saveButton.addEventListener("click", () => filePicker.click());
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const newButton = document.getElementById("new-button");
+    const newButton = document.getElementById("new-button");
 
-        newButton.addEventListener("click", () => {
-            window.open(window.location.href, "_blank");
-        })
+    newButton.addEventListener("click", async () => {
+        try {
+            await eel.new_file()();
+        } catch (error) {
+            console.error("Error creating new file: ", error);
+            alert("Failed to create new file.")
+        }
     })
+
 
     // Active toggle
     document.querySelectorAll("button").forEach(button => {
@@ -55,6 +59,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     
+    // Font Sizes
+    document.querySelector('select[onchange*="fontSize"]').addEventListener("change", function () {
+        const fontSize = this.value; // Get the selected font size
+        if (!fontSize) return;
+
+        // Apply the font size using inline styles
+        document.execCommand("styleWithCSS", false, true); // Ensure styles are applied inline
+        document.execCommand("fontSize", false, "7"); // Use a placeholder size (7 is the largest predefined size)
+
+        // Replace the placeholder size with the actual size
+        const selectedElements = window.getSelection().anchorNode.parentElement;
+        if (selectedElements) {
+            selectedElements.style.fontSize = `${fontSize}px`;
+        }
+    });
 
     // Color selector
     document.getElementById("colorPicker").addEventListener("input", function () {
@@ -76,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!parentElement.closest("#content")) return;
         
         const formatDropdown = document.querySelector('select[onchange*="formatBlock"]');
+        const fontSizeDropdown = document.querySelector('select[onchange*="fontSize"]');
 
         const currentFormat = parentElement.tagName.toLowerCase();
 
@@ -88,6 +108,17 @@ document.addEventListener("DOMContentLoaded", () => {
             formatDropdown.value = "";
         }
         const computedStyle = window.getComputedStyle(parentElement);
+        const currentFontSize = parseInt(computedStyle.fontSize, 10);
+
+        Array.from(fontSizeDropdown.options).forEach(option => {
+            if (parseInt(option.value, 10) === currentFontSize) {
+                fontSizeDropdown.value = option.value;
+            }
+        })
+
+        if (!Array.from(fontSizeDropdown.options).some(option => parseInt(option.value, 10))) {
+            fontSizeDropdown.value = "";
+        }
     
         // Helper function to convert RGB to Hex
         const toHex = (rgb) =>
