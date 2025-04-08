@@ -191,9 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 alert("Unsupported file type. Please upload a .txt, .md, or .docx file.");
             }
-
+        
             filePicker.value = ""; // Reset the file picker
+            console.log("File loaded succesfully,")
         }
+        
     });
     
     fileSelect.addEventListener("change", () => {
@@ -267,27 +269,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     saveButton.addEventListener("click", async () => {
-        const filetype = fileSelect.value; // Get the selected file type
-        const filename = filenameInput.value || "untitled"; // Default filename
+        const filename = filenameInput.value.trim(); // Get the filename from the input
+        const filetype = filename.split('.').pop().toLowerCase(); // Infer file type from the filename
         const contentText = content.innerHTML; // Get the content from the editor
     
-        if (!filetype) {
-            alert("Please select a file type.");
+        if (!filename) {
+            alert("Please enter a filename.");
+            return;
+        }
+    
+        if (!["txt", "md", "pdf", "docx"].includes(filetype)) {
+            alert("Unsupported file type. Please use a valid file extension (e.g., .txt, .md, .pdf, .docx).");
             return;
         }
     
         try {
-            // Call the backend save_file function using eel
-            const response = await eel.save_file(filename, contentText, filetype)();
-            if (response.includes("already exists")) {
-                const override = confirm(response); // Ask the user if they want to override
-                if (override) {
-                    const overrideResponse = await eel.save_file(filename, contentText, filetype, true)();
-                    alert(overrideResponse); // Show the response from the backend
-                }
-            } else {
-                alert(response); // Show the response from the backend
-            }
+            // Call the backend save_file function using Eel
+            const response = await eel.save_file(filename, contentText, filetype, true)(); // Always override
+            alert(response); // Show the response from the backend
         } catch (error) {
             console.error("Error saving file:", error);
             alert("Failed to save the file. Please try again.");

@@ -8,7 +8,7 @@ import flet as ft
 class FileManager:
     def __init__(self):
         eel.init("src")
-
+        
     @eel.expose
     def save_file(self, filename, content, filetype, override=False):
         # Add the correct file extension if not already present
@@ -52,12 +52,33 @@ class FileManager:
 
     @eel.expose
     def load_file(self, filename):
-        if os.path.exists(filename):
-            with open(filename, 'r') as file:
-                content = file.read()
-            return content
-        else:
+        """
+        Loads the content of a file and returns it to the frontend.
+        Supports .txt, .md, and .docx file types.
+        """
+        if not os.path.exists(filename):
             return f"File {filename} does not exist."
+
+        try:
+            file_extension = filename.split('.')[-1].lower()
+
+            if file_extension == "txt" or file_extension == "md":
+                # Read plain text or markdown files
+                with open(filename, 'r', encoding='utf-8') as file:
+                    content = file.read()
+                return content
+
+            elif file_extension == "docx":
+                # Read .docx files using python-docx
+                doc = Document(filename)
+                content = "\n".join([paragraph.text for paragraph in doc.paragraphs])
+                return content
+
+            else:
+                return f"Unsupported file type: {file_extension}"
+
+        except Exception as e:
+            return f"An error occurred while loading the file: {str(e)}"
 
     @eel.expose
     def undo(self):
