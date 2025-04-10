@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById("content");
     const loadButton = document.getElementById("load-button");
     const fileSelect = document.getElementById("fileSelect");
-    const saveButton = document.getElementById("saveButton");
+    const saveButton = document.getElementById("save-button");
     const modal = document.getElementById("saveModal");
     const filenameInput = document.getElementById("file-name");
     const closeModal = document.querySelector(".close");
@@ -165,9 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     
-    
-    
-
     // Makes links clickable
     content.addEventListener("mouseenter", function () {
         const a = content.querySelectorAll('a');
@@ -263,82 +260,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // saveButton.addEventListener("click", async () => {
-    //     const filetype = fileSelect.value;
-    //     const filename = filenameInput.value;
-    //     if (filename) {
-    //         const contentText = content.innerHTML;
-    //         const response = await eel.save_file(filename, contentText, filetype)();
-    //         if (response.includes("already exists")) {
-    //             const override = confirm(response);
-    //             if (override) {
-    //                 await eel.save_file(filename, contentText, filetype, true)().then(alert);
-    //             }
-    //         } else {
-    //             alert(response);
-    //         }
-    //         modal.style.display = "none";
-    //     } else {
-    //         alert("Please enter a filename.");
-    //     }
-    // });
-
-    // saveButton.addEventListener("click", () => {
-    //     const filetype = fileSelect.value;
-    //     const filename = filenameInput.value || "untitled";
-    //     const contentText = content.innerHTML;
-    
-    //     if (!filetype) {
-    //         alert("Please select a file type.");
-    //         return;
-    //     }
-    
-    //     let blob;
-    //     switch (filetype) {
-    //         case "txt":
-    //             blob = new Blob([contentText], { type: "text/plain;charset=utf-8" });
-    //             break;
-    //         case "md":
-    //             blob = new Blob([contentText], { type: "text/markdown;charset=utf-8" });
-    //             break;
-    //         case "pdf":
-    //             alert("PDF export is not supported directly in the browser. Use the backend for this.");
-    //             return;
-    //         case "docx":
-    //             alert("DOCX export is not supported directly in the browser. Use the backend for this.");
-    //             return;
-    //         default:
-    //             alert("Unsupported file type.");
-    //             return;
-    //     }
-    
-    //     saveAs(blob, `${filename}.${filetype}`);
-    //     modal.style.display = "none";
-    // });
-
-    
     saveButton.addEventListener("click", async () => {
-        const filename = filenameInput.value.trim(); // Get the filename from the input
-        const filetype = filename.split('.').pop().toLowerCase(); // Infer file type from the filename
         const contentText = content.innerHTML; // Get the content from the editor
-    
+        let filename = filenameInput.value.trim(); // Get the filename from the input
+        let contentToSave;
+        const fileExtension = filename.split('.').pop().toLowerCase();
+
         if (!filename) {
             alert("Please enter a filename.");
             return;
         }
-    
-        if (!["txt", "md", "pdf", "docx"].includes(filetype)) {
-            alert("Unsupported file type. Please use a valid file extension (e.g., .txt, .md, .pdf, .docx).");
-            return;
+
+        // Default to .docx if no file extension is provided
+        if (!filename.includes(".")) {
+            filename += ".docx";
         }
-    
+
+        if (fileExtension === "txt"){
+            contentToSave = content.textContent;
+        } else {
+            contentToSave = content.innerHTML;
+        }
+
         try {
-            // Call the backend save_file function using Eel
-            const response = await eel.save_file(filename, contentText, filetype, true)(); // Always override
-            alert(response); // Show the response from the backend
+            // Use the File System Access API to show the save file picker
+            const fileHandle = await window.showSaveFilePicker({
+                suggestedName: filename,
+                types: [
+                    {
+                        description: "Document Files",
+                        accept: {
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+                            "text/plain": [".txt"],
+                            "text/markdown": [".md"],
+                            "application/pdf": [".pdf"],
+                        },
+                    },
+                ],
+            });
+
+            // Create a writable stream and write the content to the file
+            const writableStream = await fileHandle.createWritable();
+            await writableStream.write(contentText);
+            await writableStream.close();
+
+            alert(`File saved successfully as ${fileHandle.name}`);
         } catch (error) {
             console.error("Error saving file:", error);
-            alert("Failed to save the file. Please try again.");
+            if (error.name !== "AbortError") {
+                alert("Failed to save the file. Please try again.");
+            }
         }
     });
     
@@ -369,7 +340,6 @@ function executeCommand(cmd, value = null) {
         document.execCommand(cmd);
     }
 }
-
 
 function addLink() {
     const url = prompt("Insert URL");

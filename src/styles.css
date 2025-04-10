@@ -71,6 +71,8 @@ body {
     background: #eee; /* Keeps the background consistent */
     padding: 16px;
     background: var(--toolbar-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for better visibility */
+
 }
 .toolbar .head {
     display: flex;

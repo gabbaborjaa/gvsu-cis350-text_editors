@@ -13,12 +13,15 @@ class FileManager:
     @eel.expose
     def new_file(self):
         self.start_app()
-        
+
     @eel.expose
     def save_file(self, filename, content, filetype, override=False):
         # Add the correct file extension if not already present
         if not filename.endswith(f".{filetype}"):
             filename = f"{filename}.{filetype}"
+
+        if filetype not in ["txt", "md", "pdf", "docx"]:
+            return f"Unsupported file type: {filetype}"
 
         if os.path.exists(filename) and not override:
             return f"File {filename} already exists. Do you want to override it?"
