@@ -11,8 +11,9 @@ class FileManager:
 
 
     @eel.expose
-    def new_file(self):
-        self.start_app()
+    @staticmethod
+    def new_file():
+        eel.start('index.html')
 
     @eel.expose
     def save_file(self, filename, content, filetype, override=False):

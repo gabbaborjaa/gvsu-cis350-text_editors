@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             await eel.new_file()();
         } catch (error) {
             console.error("Error creating new file: ", error);
-            alert("Failed to create new file.")
+            // alert("Failed to create new file.")
         }
     })
 
