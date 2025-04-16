@@ -64,17 +64,21 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 | :-------------: | :----------: | 
 | NFR1 | The application shall load and save files within 2 seconds. | 
 | NFR2 | The application shall handle text documents up to 10,000 words without performance degradation. | 
-| NFR3 | <Requirement 3> | 
-| … | … |
+| NFR3 | The application shall remain responsive under high memory or CPU usage. | 
+| NFR4 | The application shall initialize the user interface within 3 seconds after launch. | 
+| NFR5 | The application shall execute formatting operations (e.g., bold, italic, underline) instantly within 1 second of the formatting button being pressed. | 
+
 
 ### Usability
 
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| NFR4 | The application shall have an intuitive and user-friendly interface.| 
-| NFR5 | The application shall provide tooltips for all toolbar buttons.| 
-| NFR6 | The application shall be able to be used in light and dark mode themes.| 
-<!-- | … | … | -->
+| NFR6 | The application shall have an intuitive and user-friendly interface.| 
+| NFR7 | The application shall provide tooltips for all toolbar buttons.| 
+| NFR8 | The application shall be able to be used in light and dark mode themes.| 
+| NFR9 | The application shall be able to indicate when formatting is active.|
+| NFR10 | The application shall be able to be show all active formatting when respective text is selected. | 
+
 
 ### Compatibility
 
@@ -85,21 +89,4 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 | NFR9 | The application shall be compatible with most popular Oerating Systems (Mac, Windows, Linux) | 
 <!-- | … | … | -->
 
-### Security
-
-| ID  | Requirement     | 
-| :-------------: | :----------: | 
-| NFR10 | The application shall not store any user data on the server.| 
-| NFR11 | The application shall ask for any personal data to be shared online. | 
-| NFR12 | <Requirement 3> | 
-
-
-### Maintainability
-
-| ID  | Requirement     | 
-| :-------------: | :----------: | 
-| NFR13 | The application shall use version control (Git) for source code management. | 
-<!-- | MA2 | <Requirement 2> |  -->
-<!-- | MA3 | <Requirement 3> |  -->
-<!-- | … | … | -->
 
