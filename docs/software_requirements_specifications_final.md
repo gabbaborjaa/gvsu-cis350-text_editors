@@ -5,14 +5,21 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 
 # Software Requirements
 
+## Functional Requirements
+
 ### Text Editing
 
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| FR1 | <Requirement 1> | 
-| FR2 | <Requirement 2> | 
-| FR3 | <Requirement 3> | 
+| FR1 | The user shall be able to create a new text document. | 
+| FR2 |The user shall be able to edit the text document. | 
+| FR3 | The user shall be able to format text (bold, italic, underline, strikethrough).| 
 | … | … |
+| … | … |
+| … | … |
+| … | … |
+| … | … |
+
 
 ### File Operations
 
@@ -22,3 +29,52 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 | FR2 | <Requirement 2> | 
 | FR3 | <Requirement 3> | 
 | … | … |
+
+
+## Non-Functional Requirements
+
+### Performance
+
+| ID  | Requirement     | 
+| :-------------: | :----------: | 
+| FR1 | <Requirement 1> | 
+| FR2 | <Requirement 2> | 
+| FR3 | <Requirement 3> | 
+| … | … |
+
+### Usability
+
+| ID  | Requirement     | 
+| :-------------: | :----------: | 
+| FR1 | <Requirement 1> | 
+| FR2 | <Requirement 2> | 
+| FR3 | <Requirement 3> | 
+| … | … |
+
+### Compatibility
+
+| ID  | Requirement     | 
+| :-------------: | :----------: | 
+| FR1 | <Requirement 1> | 
+| FR2 | <Requirement 2> | 
+| FR3 | <Requirement 3> | 
+| … | … |
+
+### Security
+
+| ID  | Requirement     | 
+| :-------------: | :----------: | 
+| FR1 | <Requirement 1> | 
+| FR2 | <Requirement 2> | 
+| FR3 | <Requirement 3> | 
+| … | … |
+
+### Maintainability
+
+| ID  | Requirement     | 
+| :-------------: | :----------: | 
+| FR1 | <Requirement 1> | 
+| FR2 | <Requirement 2> | 
+| FR3 | <Requirement 3> | 
+| … | … |
+
