@@ -39,6 +39,7 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 ### 2. Usability
 1. The application shall have an intuitive and user-friendly interface.
 2. The application shall provide tooltips for all toolbar buttons.
+3. The application shall be able to be used in light and dark mode themes.
 
 ### 3. Compatibility
 1. The application shall be responsive and work on different screen sizes (desktop, tablet, mobile).

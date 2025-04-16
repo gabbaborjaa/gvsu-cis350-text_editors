@@ -170,6 +170,24 @@ body {
     grid-gap: 10px;
 }
 
+.toolbar-button {
+    padding: 6px 10px; /* Increase padding for better spacing */
+    margin-right: 10px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 4px; /* Adjust font size for better readability */
+    min-width: 80px; /* Ensure buttons have enough width */
+    text-align: center; /* Center-align the text */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.toolbar-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
 .toolbar .buttons button {
     width: 40px;
     height: 40px;

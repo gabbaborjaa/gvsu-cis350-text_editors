@@ -3,6 +3,12 @@
 The purpose of this document is to highlight the functionalities, behaviors, and capabilities of Jotter, a text editor application. Jotter aims to provide users with a simple, efficient, and user-friendly text editor that balances functionality and ease of use.
 
 # Software Artifacts
+[Use Case Diagram](../artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
+
+[Sequence Diagrams](../artifacts/sequence%20_diagram/)
+
+[Class Diagram](../artifacts/class_diagram/ClassDiagram.png)
+
 
 # Software Requirements
 
