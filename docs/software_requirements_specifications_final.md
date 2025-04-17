@@ -2,15 +2,10 @@
 
 The purpose of this document is to highlight the functionalities, behaviors, and capabilities of Jotter, a text editor application. Jotter aims to provide users with a simple, efficient, and user-friendly text editor that balances functionality and ease of use.
 
-# Software Artifacts
-[Use Case Diagram](../artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
-
-[Sequence Diagrams](../artifacts/sequence%20_diagram/)
-
-[Class Diagram](../artifacts/class_diagram/ClassDiagram.png)
-
 
 # Software Requirements
+
+This section outlines the essential requirements for the software application, encompassing both functional and non-functional aspects necessary for successful development, deployment, and usage.
 
 ## Functional Requirements
 
@@ -84,9 +79,23 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| NFR7 | The application shall be responsive and work on different screen sizes (desktop, tablet, mobile).| 
-| NFR8 | The application shall be compatible with modern web browsers (Chrome, Firefox, Safari, Edge).| 
-| NFR9 | The application shall be compatible with most popular Oerating Systems (Mac, Windows, Linux) | 
-<!-- | … | … | -->
+| NFR11 | The application shall be responsive and work on different screen sizes (desktop, tablet, mobile).| 
+| NFR12 | The application shall be compatible with modern web browsers (Chrome, Firefox, Safari, Edge).| 
+| NFR13 | The application shall be compatible with most popular Oerating Systems (Mac, Windows, Linux) | 
+| NFR14 | The application shall maintain consistent functionality and appearance across different device orientations (portrait and landscape). |
+| NFR15 | The application shall function reliably in environments with varying internet speeds, including slower or unstable connections. |
+
+
+
+# Software Artifacts
+
+This section outlines the key deliverables and artifacts produced throughout the software development lifecycle.
+
+[Use Case Diagram](../artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
+
+[Sequence Diagrams](../artifacts/sequence%20_diagram/)
+
+[Class Diagram](../artifacts/class_diagram/ClassDiagram.png)
+
 
 
