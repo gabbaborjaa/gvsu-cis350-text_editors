@@ -13,6 +13,56 @@ A super cool text editor that allows you to customize colors, exports to PDF's, 
 
 # Run Instructions
 
+Clone the repository and and `cd` into the project folder:
+
+```
+git clone https://github.com/gabbaborjaa/gvsu-cis350-text_editors.git
+
+cd gvsu-cis350-text_editors
+```
+
+Create a python virtual environment called `env`:
+
+```
+python -m venv env
+```
+
+Activate it:
+
+```
+source env/bin/activate
+```
+
+Install requirements:
+
+```
+pip install -r requirements.txt
+```
+
+To run with the python interpreter, run:
+
+```
+python main.py
+```
+
+or
+
+```
+python3 main.py
+```
+
+## Build Executable
+
+We use Eel to for our web application, which uses PyInstaller to build binaries. Assuming you follwed the above instructions and have activated the virtual environment, `cd` run:
+
+```
+python -m eel main.py src
+```
+
+This will generate an executable in `dist/main`
+
+
+
 # 1 Abstract
 Writing is an essential part of everyday life, whether for work, school, or personal projects. However, finding a simple, efficient, and user-friendly text editor that meets individual needs can be challenging. Many existing editors are either too complex, lack necessary features, or fail to provide an intuitive experience. Our text editor "Jotter" aims to develop a text editor that balances functionality and ease of use, providing users with a seamless writing experience. The editor will offer essential text editing features, such as formatting, saving, and loading documents. By creating an intuitive and accessible tool, our goal is to streamline the writing process and enhance productivity for users across various domains.
 # 2 Introduction

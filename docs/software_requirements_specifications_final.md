@@ -2,15 +2,10 @@
 
 The purpose of this document is to highlight the functionalities, behaviors, and capabilities of Jotter, a text editor application. Jotter aims to provide users with a simple, efficient, and user-friendly text editor that balances functionality and ease of use.
 
-# Software Artifacts
-[Use Case Diagram](../artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
-
-[Sequence Diagrams](../artifacts/sequence%20_diagram/)
-
-[Class Diagram](../artifacts/class_diagram/ClassDiagram.png)
-
 
 # Software Requirements
+
+This section outlines the essential requirements for the software application, encompassing both functional and non-functional aspects necessary for successful development, deployment, and usage.
 
 ## Functional Requirements
 
@@ -46,14 +41,16 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 | FR14 | The user shall be able to undo the last action. | 
 | FR15 | The user shall be able to redo the last undone action. | 
 | FR16 | The user shall be able to perform multiple undos and redos in a row. | 
+| FR17 | The application shall ignore undo or redo commands when no such actions are available. | 
+| FR18 | The application shall preserve undo/redo history during the current editing session until the file is closed or reset. | 
 
 
 ### User Interface
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| FR17 | The user shall be able to interact with the application through a graphical user interface (GUI). | 
-| FR18 | The user shall be able to use a toolbar to access text formatting and file operation features. | 
-| FR19 | The user shall be able to use a modal to save files and choose the save location. | 
+| FR19 | The user shall be able to interact with the application through a graphical user interface (GUI). | 
+| FR20 | The user shall be able to use a toolbar to access text formatting and file operation features. | 
+| FR21 | The user shall be able to use a modal to save files and choose the save location. | 
 
 
 ## Non-Functional Requirements
@@ -64,42 +61,43 @@ The purpose of this document is to highlight the functionalities, behaviors, and
 | :-------------: | :----------: | 
 | NFR1 | The application shall load and save files within 2 seconds. | 
 | NFR2 | The application shall handle text documents up to 10,000 words without performance degradation. | 
-| NFR3 | <Requirement 3> | 
-| … | … |
+| NFR3 | The application shall remain responsive under high memory or CPU usage. | 
+| NFR4 | The application shall initialize the user interface within 3 seconds after launch. | 
+| NFR5 | The application shall execute formatting operations (e.g., bold, italic, underline) instantly within 1 second of the formatting button being pressed. | 
+
 
 ### Usability
 
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| NFR4 | The application shall have an intuitive and user-friendly interface.| 
-| NFR5 | The application shall provide tooltips for all toolbar buttons.| 
-| NFR6 | The application shall be able to be used in light and dark mode themes.| 
-<!-- | … | … | -->
+| NFR6 | The application shall have an intuitive and user-friendly interface.| 
+| NFR7 | The application shall provide tooltips for all toolbar buttons.| 
+| NFR8 | The application shall be able to be used in light and dark mode themes.| 
+| NFR9 | The application shall be able to indicate when formatting is active.|
+| NFR10 | The application shall be able to be show all active formatting when respective text is selected. | 
+
 
 ### Compatibility
 
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| NFR7 | The application shall be responsive and work on different screen sizes (desktop, tablet, mobile).| 
-| NFR8 | The application shall be compatible with modern web browsers (Chrome, Firefox, Safari, Edge).| 
-| NFR9 | The application shall be compatible with most popular Oerating Systems (Mac, Windows, Linux) | 
-<!-- | … | … | -->
-
-### Security
-
-| ID  | Requirement     | 
-| :-------------: | :----------: | 
-| NFR10 | The application shall not store any user data on the server.| 
-| NFR11 | The application shall ask for any personal data to be shared online. | 
-| NFR12 | <Requirement 3> | 
+| NFR11 | The application shall be responsive and work on different screen sizes (desktop, tablet, mobile).| 
+| NFR12 | The application shall be compatible with modern web browsers (Chrome, Firefox, Safari, Edge).| 
+| NFR13 | The application shall be compatible with most popular Oerating Systems (Mac, Windows, Linux) | 
+| NFR14 | The application shall maintain consistent functionality and appearance across different device orientations (portrait and landscape). |
+| NFR15 | The application shall function reliably in environments with varying internet speeds, including slower or unstable connections. |
 
 
-### Maintainability
 
-| ID  | Requirement     | 
-| :-------------: | :----------: | 
-| NFR13 | The application shall use version control (Git) for source code management. | 
-<!-- | MA2 | <Requirement 2> |  -->
-<!-- | MA3 | <Requirement 3> |  -->
-<!-- | … | … | -->
+# Software Artifacts
+
+This section outlines the key deliverables and artifacts produced throughout the software development lifecycle.
+
+[Use Case Diagram](../artifacts/use_case_diagram/Text-Editor_Use-Case.drawio.png)
+
+[Sequence Diagrams](../artifacts/sequence%20_diagram/)
+
+[Class Diagram](../artifacts/class_diagram/ClassDiagram.png)
+
+
 
