@@ -23,29 +23,41 @@ cd gvsu-cis350-text_editors
 
 Create a python virtual environment called `env`:
 
-`python -m venv env`
+```
+python -m venv env
+```
 
 Activate it:
 
-`source env/bin/activate`
+```
+source env/bin/activate
+```
 
 Install requirements:
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 To run with the python interpreter, run:
 
-`python main.py`
+```
+python main.py
+```
 
 or
 
-`python3 main.py`
+```
+python3 main.py
+```
 
 ## Build Executable
 
 We use Eel to for our web application, which uses PyInstaller to build binaries. Assuming you follwed the above instructions and have activated the virtual environment, `cd` run:
 
-`python -m eel main.py src`
+```
+python -m eel main.py src
+```
 
 This will generate an executable in `dist/main`
 
