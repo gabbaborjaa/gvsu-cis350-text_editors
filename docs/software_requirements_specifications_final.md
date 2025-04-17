@@ -41,14 +41,16 @@ This section outlines the essential requirements for the software application, e
 | FR14 | The user shall be able to undo the last action. | 
 | FR15 | The user shall be able to redo the last undone action. | 
 | FR16 | The user shall be able to perform multiple undos and redos in a row. | 
+| FR17 | The application shall ignore undo or redo commands when no such actions are available. | 
+| FR18 | The application shall preserve undo/redo history during the current editing session until the file is closed or reset. | 
 
 
 ### User Interface
 | ID  | Requirement     | 
 | :-------------: | :----------: | 
-| FR17 | The user shall be able to interact with the application through a graphical user interface (GUI). | 
-| FR18 | The user shall be able to use a toolbar to access text formatting and file operation features. | 
-| FR19 | The user shall be able to use a modal to save files and choose the save location. | 
+| FR19 | The user shall be able to interact with the application through a graphical user interface (GUI). | 
+| FR20 | The user shall be able to use a toolbar to access text formatting and file operation features. | 
+| FR21 | The user shall be able to use a modal to save files and choose the save location. | 
 
 
 ## Non-Functional Requirements
