@@ -72,8 +72,3 @@ Jotter gives you the tools to add emphasis to your writing. You can change the f
 ## 4.4 Saving and Exporting
 To save and export your document, click on "File" which is just right of the "Load" button. Click save to .txt to save as a text file.
 
-# 5 Risk Analysis/Retrospective
-
-# 6 Future Scope
-
-# 7 Conclusion
