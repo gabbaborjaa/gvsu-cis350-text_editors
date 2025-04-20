@@ -41,19 +41,19 @@ Jotter aims to be the perfect solution for students, professionals, and casual w
 
 ## 3.3 Sequence Diagram
 <p align="center">
-  <img src="./artifacts/sequence_diagram/Figure1.png" width="300" title="Figure 2">
+  <img src="./artifacts/sequence _diagram/Figure1.png" width="300" title="Figure 2">
   <br>
   Figure 2: Sequence Diagram for Editing Documents
 </p>
 
 <p align="center">
-  <img src="./artifacts/sequence_diagram/Figure2.png" width="300" title="Figure 3">
+  <img src="./artifacts/sequence _diagram/Figure2.png" width="300" title="Figure 3">
   <br>
   Figure 3: Sequence Diagram for Loading Documents
 </p>
 
 <p align="center">
-  <img src="./artifacts/sequence_diagram/Figure3.png" width="300" title="Figure 4">
+  <img src="./artifacts/sequence _diagram/Figure3.png" width="300" title="Figure 4">
   <br>
   Figure 3: Sequence Diagram for Saving Documents
 </p>
